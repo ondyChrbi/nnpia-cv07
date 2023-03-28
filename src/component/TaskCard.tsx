@@ -6,7 +6,7 @@ interface Props {
 
 const TaskCard = ({task} : Props) => {
     return <div>
-        <h1>{task.id}:{task.title}</h1>
+        <h3>{task.id}:{task.title}</h3>
         <p>{task.description}</p>
         <table>
             <thead>
