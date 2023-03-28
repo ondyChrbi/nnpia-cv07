@@ -1,19 +1,28 @@
 import {Task} from "../data/init-data";
+import React from "react";
 
 interface Props {
     task: Task;
+
+    onClick: (task: Task) => void;
 }
 
-const TaskCard = ({task} : Props) => {
+const TaskCard = ({task, onClick} : Props) => {
+    const checkboxChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+
+        onClick(task);
+    };
+
     return <div>
         <h3>{task.id}:{task.title}</h3>
         <p>{task.description}</p>
         <table>
             <thead>
-                <th>
+                <tr>
                     <td>Date of creation</td>
                     <td>Date of update</td>
-                </th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
@@ -23,7 +32,7 @@ const TaskCard = ({task} : Props) => {
             </tbody>
         </table>
         <label htmlFor="myCheckbox">Splněno</label>
-        <input type="checkbox" name="myCheckbox" value="myCheckbox" />
+        <input type="checkbox" name="myCheckbox" value="myCheckbox" checked={task.done} onChange={checkboxChangeHandle} />
     </div>
 };
 
